@@ -1,2 +1,2 @@
 # tartool-meteor-react
-This is reimplementation of tartool in meteor react. 
+This is implementation of tartool in meteor react. 
