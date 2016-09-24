@@ -1,4 +1,4 @@
-export const Tasks = new Mongo.Collection('tasks');
+export const Resources = new Mongo.Collection('resouces');
 
 ResourcesScoresSchema = new SimpleSchema({
 	likes:{
@@ -78,3 +78,5 @@ ResourcesSchema = new SimpleSchema({
         }
 	}
 });
+
+Resources.attachSchema(ResourcesSchema);

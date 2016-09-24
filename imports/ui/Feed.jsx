@@ -10,23 +10,22 @@ import AccountsUIWrapper from './Accounts/AccountsUIWrapper.jsx';
  
 // Feed component - represents the whole feed
 export default class Feed extends Component {
-  getTasks() {
+  getResources() {
     return [
       { _id: 1, text: 'This is task 1' },
       { _id: 2, text: 'This is task 2' },
       { _id: 3, text: 'This is task 3' },
     ];
   }
- 
-  renderTasks() {
-    return this.getTasks().map((resource) => (
+
+  renderResources() {
+    return this.getResources().map((resource) => (
       <Resource key={resource._id} resource={resource} />
     ));
   }
  
   render() {
     return (
-
       <div className="container">
       <AccountsUIWrapper />
         <header>
@@ -35,7 +34,7 @@ export default class Feed extends Component {
           { this.props.currentUser ?
             <div>LOGGED IN</div> : ""
           }
-          {this.renderTasks()}
+          {this.renderResources()}
 
       </div>
     );
@@ -44,6 +43,6 @@ export default class Feed extends Component {
 
 export default createContainer(() => {
   return {
-    currentUser:  Meteor.user()
+    currentUser: Meteor.user()
   };
 }, Feed);
