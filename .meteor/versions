@@ -11,11 +11,11 @@ aldeed:schema-deny@1.1.0
 aldeed:schema-index@1.1.0
 aldeed:simple-schema@1.5.3
 allow-deny@1.0.5
-autopublish@1.0.7
 autoupdate@1.2.11
 babel-compiler@6.9.1
 babel-runtime@0.1.11
 base64@1.0.9
+benjaminrh:jquery-blockui@2.61.0
 binary-heap@1.0.9
 blaze@2.1.9
 blaze-html-templates@1.0.5
@@ -45,7 +45,6 @@ html-tools@1.0.11
 htmljs@1.0.11
 http@1.1.8
 id-map@1.0.8
-insecure@1.0.7
 jquery@1.11.9
 launch-screen@1.0.12
 less@1.0.14
@@ -90,12 +89,14 @@ spacebars-compiler@1.0.13
 srp@1.0.9
 standard-minifier-css@1.2.0
 standard-minifier-js@1.2.0
+stylus@2.513.5
 templating@1.2.15
 templating-compiler@1.2.15
 templating-runtime@1.2.15
 templating-tools@1.0.5
 tmeasday:check-npm-versions@0.2.0
 tracker@1.1.0
+twbs:bootstrap@3.3.6
 ui@1.0.12
 underscore@1.0.9
 url@1.0.10

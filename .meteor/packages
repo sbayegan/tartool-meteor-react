@@ -18,8 +18,8 @@ es5-shim@4.6.14                # ECMAScript 5 compatibility for older browsers.
 ecmascript@0.5.8              # Enable ECMAScript2015+ syntax in app code
 shell-server@0.2.1            # Server-side component of the `meteor shell` command
 
-autopublish@1.0.7             # Publish all data to the clients (for prototyping)
-insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
+#autopublish@1.0.7             # Publish all data to the clients (for prototyping)
+#insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
 
 aldeed:simple-schema            # Database Schemas
 aldeed:collection2
@@ -29,3 +29,8 @@ react-meteor-data               # React Stuff
 accounts-ui                     # Core accounts package. Remember to set Account.ui.config on the client
 accounts-password               # Core accounts package.
 accounts-facebook               # Facebook login plugin
+
+stylus                          # Stylus is a CSS pre-processor with a simple syntax and expressive dynamic behavior.
+                                # UI blocker and simple loading spinner for Meteor apps
+twbs:bootstrap                  # Bootstrap
+benjaminrh:jquery-blockui
