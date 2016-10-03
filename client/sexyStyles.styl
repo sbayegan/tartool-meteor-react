@@ -52,5 +52,26 @@ input
   left 0px
   height 400px
   width 130px
-  border 1px black dashed
+  //border 1px black dashed
 
+.tab-content-area
+  position absolute
+  top 0px
+  right 0px
+  height 100%
+  width calc(100% - 130px)
+  border 1px purple dashed
+
+.react-tabs [role=tab]
+  width 125px
+  height 125px
+  border 1px solid transparent
+  margin-top 5px
+
+.react-tabs [role=tab][aria-selected=true]
+  border-radius: 5px 5px 5px 5px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+
+.react-tabs [role=tablist]
+  border-bottom none

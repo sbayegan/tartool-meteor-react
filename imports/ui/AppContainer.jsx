@@ -3,6 +3,8 @@ import {Meteor} from 'meteor/meteor';
 
 import {createContainer} from 'meteor/react-meteor-data';
 
+import ReactDOM from 'react-dom';
+
 import Resource from './Resource.jsx';
 import AccountsUIWrapper from './Accounts/AccountsUIWrapper.jsx';
 
@@ -38,22 +40,35 @@ class App extends Component {
 
 					<Tabs
 						onSelect={this.handleSelect}
-						selectedIndex={2}
+						selectedIndex={0}
 					>
-						<TabList>
-							<Tab>Foo</Tab>
-							<Tab>Bar</Tab>
-							<Tab>Baz</Tab>
+						<TabList className="tab-menu-area">
+							<Tab>Feed</Tab>
+							<Tab>Library</Tab>
+							<Tab>Profile</Tab>
+							<Tab>Settings</Tab>
 						</TabList>
 
-						<TabPanel className="test-width">
-							<h2>Hello from Foo</h2>
+
+						<TabPanel className="tab-content-area">
+							<h2>Feed</h2>
+							{/*
+							 TODO: A URL TAKER COMPONENT SHOULD GO HERE !
+							*/
+							/*
+							TODO:  A FEED GENERATOR COMPONENT SHOULD GO HERE!
+							 */
+								}
+
 						</TabPanel>
-						<TabPanel>
-							<h2>Hello from Bar</h2>
+						<TabPanel className="tab-content-area">
+							<h2>Library</h2>
+						</TabPanel >
+						<TabPanel className="tab-content-area">
+							<h2>Profile</h2>
 						</TabPanel>
-						<TabPanel>
-							<h2>Hello from Baz</h2>
+						<TabPanel className="tab-content-area">
+							<h2>Settings</h2>
 						</TabPanel>
 					</Tabs>
 				</div>
@@ -68,7 +83,7 @@ class App extends Component {
 
 		// Find the text field via the React ref
 		const text = ReactDOM.findDOMNode(this.refs.searchInput).value.trim();
-
+		
 		// Clear form
 		ReactDOM.findDOMNode(this.refs.searchInput).value = '';
 	}
