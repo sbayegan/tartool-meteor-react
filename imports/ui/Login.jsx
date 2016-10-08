@@ -13,7 +13,7 @@ export default class Library extends Component {
 		return (
 				<header>
 					<h1>LOGIN PAGE</h1>
-					<p>This is under active construction</p>
+					<p>This is under active development</p>
 				</header>
 		);
 	}

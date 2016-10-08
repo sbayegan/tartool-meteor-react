@@ -1,12 +1,10 @@
 import React from 'react';
 import { Router, Route, browserHistory } from 'react-router';
 
-import App from '../ui/AppContainer.jsx'
-import Feed from '../ui/Feed.jsx';
-import Profile from '../ui/Profile.jsx';
-import Library from '../ui/Library.jsx';
-import Login from '../ui/Login.jsx';
-import NotFound from '../ui/NotFound.jsx';
+import App from '../imports/ui/AppContainer.jsx'
+import Profile from '../imports/ui/Profile.jsx';
+import Login from '../imports/ui/Login.jsx';
+import NotFound from '../imports/ui/NotFound.jsx';
 
 
 /**
@@ -28,14 +26,11 @@ const requireAuth = (nextState, replace) => {
 };
 
 export const renderRoutes = () => (
-<Router history={browserHistory}>
-	<Route path="/" component={App}>
-		<Route path="food" component={Feed}/>
-		<Route path="techie/:id" component={Profile}/>
-		<Route path="library" component={Library} onEnter={ requireAuth }/>
-		<Route path="login" component={Login}/>
+	<Router history={browserHistory}>
+		<Route path="/techie/:id" component={Profile}/>
+		<Route path="/login" component={Login}/>
+		<Route path="/" component={App}/>
 		<Route path="*" component={NotFound}/>
-	</Route>
 	</Router>
 );
 

@@ -12,9 +12,9 @@ import AccountsUIWrapper from './Accounts/AccountsUIWrapper.jsx';
 export default class Feed extends Component {
   getResources() {
     return [
-      { _id: 1, text: 'This is task 1' },
-      { _id: 2, text: 'This is task 2' },
-      { _id: 3, text: 'This is task 3' },
+      { _id: 1, text: 'This is Resource 1' },
+      { _id: 2, text: 'This is Resource 2' },
+      { _id: 3, text: 'This is Resource 3' },
     ];
   }
 
@@ -26,17 +26,16 @@ export default class Feed extends Component {
  
   render() {
     return (
-      <div className="container">
+    <div>
       <AccountsUIWrapper />
-        <header>
-          <h1>Resource Feed</h1>
-        </header>
+
           { this.props.currentUser ?
             <div>LOGGED IN</div> : ""
           }
-          {this.renderResources()}
 
-      </div>
+
+          {this.renderResources()}
+    </div>
     );
   }
 }
