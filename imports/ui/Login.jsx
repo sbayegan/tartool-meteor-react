@@ -3,7 +3,6 @@ import { Meteor } from 'meteor/meteor';
 
 import { createContainer } from 'meteor/react-meteor-data';
 
-import Resource from './Resource.jsx';
 import AccountsUIWrapper from './Accounts/AccountsUIWrapper.jsx';
 
 
