@@ -18,3 +18,10 @@ export default class Library extends Component {
 	}
 }
 
+
+export default createContainer(() => {
+	return {
+		currentUser: Meteor.user()
+	};
+}, Library);
+

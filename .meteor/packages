@@ -28,7 +28,6 @@ aldeed:autoform                 # Smart forms !
 react-meteor-data               # React Stuff
 accounts-ui                     # Core accounts package. Remember to set Account.ui.config on the client
 accounts-password               # Core accounts package.
-accounts-facebook               # Facebook login plugin
 
 stylus                          # Stylus is a CSS pre-processor with a simple syntax and expressive dynamic behavior.
                                 # UI blocker and simple loading spinner for Meteor apps

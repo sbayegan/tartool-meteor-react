@@ -3,7 +3,7 @@ import { Router, Route, browserHistory } from 'react-router';
 
 import App from '../imports/ui/AppContainer.jsx'
 import Profile from '../imports/ui/Profile.jsx';
-import Login from '../imports/ui/Login.jsx';
+import LoginRegister from '../imports/ui/LoginRegisterModal.jsx';
 import NotFound from '../imports/ui/NotFound.jsx';
 
 
@@ -28,7 +28,6 @@ const requireAuth = (nextState, replace) => {
 export const renderRoutes = () => (
 	<Router history={browserHistory}>
 		<Route path="/techie/:id" component={Profile}/>
-		<Route path="/login" component={Login}/>
 		<Route path="/" component={App}/>
 		<Route path="*" component={NotFound}/>
 	</Router>
