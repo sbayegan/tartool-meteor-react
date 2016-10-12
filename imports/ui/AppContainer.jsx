@@ -25,9 +25,9 @@ class App extends Component {
 				<div className="under-top-bar-area">
 					<Tabs onSelect={this.handleSelect} selectedIndex={0}>
 						<TabList className="tab-menu-area">
-							<Tab>Feed</Tab>
+							<Tab>Home</Tab>
 							<Tab>Library</Tab>
-							<Tab>Channels</Tab>
+							<Tab>Filter</Tab>
 						</TabList>
 						<TabPanel className="tab-content-area">
 							<URLEngine/>

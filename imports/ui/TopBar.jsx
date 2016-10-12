@@ -16,7 +16,7 @@ export default class TopBar extends Component {
 				<div className="top-bar">
 					<div className="name"> TarTool</div>
 					<img className="logo" src="/logo.png" alt="logo"/>
-
+					{/*
 					<form onSubmit={this.handleSubmit.bind(this)}>
 						<input
 							type="text"
@@ -24,6 +24,7 @@ export default class TopBar extends Component {
 							placeholder="find techies"
 						/>
 					</form>
+					*/}
 				</div>
 				<LoginRegisterModal/>
 			</div>

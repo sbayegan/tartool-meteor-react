@@ -4,6 +4,8 @@ import { Meteor } from 'meteor/meteor';
 
 import { createContainer } from 'meteor/react-meteor-data';
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
+import ReactDOM from 'react-dom';
+
 
 import AccountsUIWrapper from './Accounts/AccountsUIWrapper.jsx';
 
@@ -27,6 +29,7 @@ export default class LoginRegisterModal extends Component {
 		};
 		this.openModal = this.openModal.bind(this);
 		this.closeModal = this.closeModal.bind(this);
+		this.handleLogin = this.handleLogin.bind(this);
 	}
 
 	openModal() {
@@ -45,13 +48,37 @@ export default class LoginRegisterModal extends Component {
 			modalIsOpen: false,
 		});
 	}
+
+	logout(){
+		Meteor.logout();
+	}
+
+	handleLogin(event){
+		event.preventDefault();
+
+		let email = ReactDOM.findDOMNode(this.refs.loginEmail).value.trim();
+		let password = ReactDOM.findDOMNode(this.refs.loginPassword).value.trim();
+		let closeModal = this.closeModal;
+
+		Meteor.loginWithPassword(email,password,function(Error) {
+			if(Error){
+				/*
+				 TODO: DELIVER THE ERROR REASON
+				  */
+			}
+			else{
+				closeModal();
+			}
+		});
+	}
+
 	render() {
 		return (
 			<div>
 			<div className="authentication-box">
 				{
 					this.props.currentUser ?
-						"LOGGED IN" : <span onClick={this.openModal}>Login or Register</span>
+						<span onClick={this.logout}>LogOUT</span> : <span onClick={this.openModal}>Login/Register</span>
 				}
 			</div>
 				<div>
@@ -69,34 +96,38 @@ export default class LoginRegisterModal extends Component {
 								<Tab>Register</Tab>
 							</TabList>
 							<TabPanel className="">
-								Log-In <br/>
-								Log-In <br/>
-								Log-In <br/>
-								Log-In <br/>
-								Log-In <br/>
-								Log-In <br/>
-								Log-In <br/>
-								Log-In <br/>
-								Log-In <br/>
-								Log-In <br/>
-								Log-In <br/>
-								Log-In <br/>
-								Log-In
+								<form onSubmit={this.handleLogin.bind(this)}>
+									<div className="form-group">
+										<label htmlFor="email">Email address:</label>
+										<input type="email" className="form-control" id="email" ref="loginEmail"/>
+									</div>
+									<div className="form-group">
+										<label htmlFor="pwd">Password:</label>
+										<input type="password" className="form-control" id="pwd" ref="loginPassword"/>
+									</div>
+									<button type="submit" className="btn btn-default">Login</button>
+								</form>
 							</TabPanel>
 							<TabPanel className="">
-								Register <br/>
-								Register <br/>
-								Register <br/>
-								Register <br/>
-								Register <br/>
-								Register <br/>
-								Register <br/>
-								Register <br/>
-								Register <br/>
-								Register <br/>
-								Register <br/>
-								Register <br/>
-								Register
+								<form onSubmit={this.handleLogin.bind(this)}>
+									<div className="form-group">
+										<label htmlFor="name">Name:</label>
+										<input type="text" className="form-control" id="name" ref="registerName"/>
+									</div>
+									<div className="form-group">
+										<label htmlFor="email">Email address:</label>
+										<input type="email" className="form-control" id="email" ref="registerEmail"/>
+									</div>
+									<div className="form-group">
+										<label htmlFor="pwd">Password:</label>
+										<input type="password" className="form-control" id="pwd" ref="registerPassword"/>
+									</div>
+									<div className="form-group">
+										<label htmlFor="pwd">Re-enter password:</label>
+										<input type="password" className="form-control" id="pwd" ref="registerPasswordRepeat"/>
+									</div>
+									<button type="submit" className="btn btn-default">Register</button>
+								</form>
 							</TabPanel >
 						</Tabs>
 					</Modal>
