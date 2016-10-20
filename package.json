@@ -6,6 +6,11 @@
   },
   "dependencies": {
     "bcrypt": "^0.8.7",
+    "fetch": "^1.1.0",
+    "fibers": "^1.0.15",
+    "htmlparser": "^1.7.7",
+    "is-url": "^1.2.2",
+    "js-video-url-parser": "^0.2.3",
     "meteor-node-stubs": "~0.2.0",
     "react": "^15.3.1",
     "react-addons-css-transition-group": "^15.3.2",
@@ -13,6 +18,7 @@
     "react-dom": "^15.3.1",
     "react-modal": "^1.5.2",
     "react-router": "^2.8.1",
-    "react-tabs": "^0.8.0"
+    "react-tabs": "^0.8.0",
+    "url": "^0.11.0"
   }
 }

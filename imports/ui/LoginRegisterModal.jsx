@@ -30,6 +30,7 @@ export default class LoginRegisterModal extends Component {
 		this.openModal = this.openModal.bind(this);
 		this.closeModal = this.closeModal.bind(this);
 		this.handleLogin = this.handleLogin.bind(this);
+		this.handleRegister = this.handleRegister.bind(this);
 	}
 
 	openModal() {
@@ -57,17 +58,48 @@ export default class LoginRegisterModal extends Component {
 		event.preventDefault();
 
 		let email = ReactDOM.findDOMNode(this.refs.loginEmail).value.trim();
-		let password = ReactDOM.findDOMNode(this.refs.loginPassword).value.trim();
+		let password = ReactDOM.findDOMNode(this.refs.loginPassword).value;
 		let closeModal = this.closeModal;
 
-		Meteor.loginWithPassword(email,password,function(Error) {
-			if(Error){
-				/*
-				 TODO: DELIVER THE ERROR REASON
-				  */
+		Meteor.loginWithPassword(email,password,function(error) {
+			if(error){
+				 //TODO: DELIVER THE ERROR REASON
+				console.log(error);
 			}
 			else{
 				closeModal();
+			}
+		});
+	}
+
+	handleRegister(event){
+		event.preventDefault();
+
+		let name = ReactDOM.findDOMNode(this.refs.registerName).value.trim();
+		let email = ReactDOM.findDOMNode(this.refs.registerEmail).value.trim();
+		let password = ReactDOM.findDOMNode(this.refs.registerPassword).value;
+		let passwordRepeat = ReactDOM.findDOMNode(this.refs.registerPasswordRepeat).value;
+
+		let closeModal = this.closeModal; // TODO: The user needs to see email activation message, so this might be deleted
+
+		if(password != passwordRepeat){
+			//TODO: show warning
+			console.log("WARNING: Passwords don't match");
+		}
+		Accounts.createUser({
+			email:email,
+			password:password,
+			profile:name
+		},function(error) {
+			if(error){
+				// TODO: Deliver the reason
+				console.log(error);
+			}else{
+				//TODO: Ask the user to verify their email address and REMOVE THE FOLLOWING AUTO LOGIN
+				Meteor.loginWithPassword(email,password,function(Error) {
+					if(Error){}
+					else{closeModal();}
+				});
 			}
 		});
 	}
@@ -109,7 +141,7 @@ export default class LoginRegisterModal extends Component {
 								</form>
 							</TabPanel>
 							<TabPanel className="">
-								<form onSubmit={this.handleLogin.bind(this)}>
+								<form onSubmit={this.handleRegister.bind(this)}>
 									<div className="form-group">
 										<label htmlFor="name">Name:</label>
 										<input type="text" className="form-control" id="name" ref="registerName"/>
