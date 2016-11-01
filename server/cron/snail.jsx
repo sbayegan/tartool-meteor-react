@@ -4,6 +4,6 @@ SyncedCron.add({
 		// parser is a later.parse object
 		return parser.text('every 100 seconds');
 	},
-	job: MakeTheSnailCrawl
+	job: SnailARandomUrl
 });
 

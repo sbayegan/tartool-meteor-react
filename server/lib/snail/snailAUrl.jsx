@@ -2,7 +2,7 @@
  * Created by saeidbay on 2016-10-26.
  */
 
-MakeTheSnailCrawl = function() {
+SnailARandomUrl = function() {
 	let candidateUrlsCount = CandidateUrls.find({}).count();
 	if(candidateUrlsCount){
 		let nextCandidate = CandidateUrls.findOne({});
