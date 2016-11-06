@@ -42,7 +42,8 @@ export default class TopBar extends Component {
 	}
 }
 
-export default createContainer(() => {
+
+let TopBarContainer = createContainer(() => {
 	return {
 		currentUser: Meteor.user()
 	};

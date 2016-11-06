@@ -4,7 +4,7 @@ SyncedCron.add({
 	name: 'Snail a URL',
 	schedule: function(parser) {
 		// parser is a later.parse object
-		return parser.text('every 1 second');
+		return parser.text('every 1 minute');
 	},
 	job: SnailARandomUrl
 });

@@ -8,7 +8,7 @@ import AccountsUIWrapper from './Accounts/AccountsUIWrapper.jsx';
 
 
 // Feed component - represents the whole feed
-export default class Library extends Component {
+export class Library extends Component {
 	render() {
 		return (
 				<header>

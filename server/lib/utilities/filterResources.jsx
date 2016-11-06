@@ -7,6 +7,7 @@ FilterResources = function(id,domInfo,domContents,tagGroups) {
 	let host = domInfo.host
 	let title = domContents.title;
 	let links = domContents.links;
+	let thumbnail = domContents.thumbnail;
 	let rawWordCount = tagGroups.rawWordCount;
 	let totalTagsCount = tagGroups.totalTagsCount;
 	let tags = tagGroups.tags;
@@ -43,8 +44,10 @@ FilterResources = function(id,domInfo,domContents,tagGroups) {
 			host:host,
 			url:url,
 			title:title,
+			thumbnail:thumbnail,
 			rawWordCount:rawWordCount,
 			totalTagsCount:totalTagsCount,
+			tags:tags,
 			tagsToRawWordCountRatio:tagsToRawWordCountRatio,
 		};
 		Resources.insert(document);

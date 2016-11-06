@@ -30,8 +30,8 @@ class App extends Component {
 							<Tab>Filter</Tab>
 						</TabList>
 						<TabPanel className="tab-content-area">
-							<URLEngine/>
-							<Feed/>
+								<URLEngine/>
+								<Feed/>
 						</TabPanel>
 						<TabPanel className="tab-content-area">
 							<Library/>
@@ -50,7 +50,7 @@ class App extends Component {
 
 }
 
-export default AppContainer = createContainer(() => {
+export default createContainer(() => {
 	return {
 		currentUser: Meteor.user()
 	};

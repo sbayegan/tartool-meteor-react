@@ -19,16 +19,16 @@ ResourcesScoresSchema = new SimpleSchema({
 		optional: true
 	}
 });
-
+ */
 TagsCountSchema = new SimpleSchema({
 	label: {
 		type: String
 	},
-	count: {
+	wordCount: {
 		type: Number
 	}
 });
-*/
+
 ResourcesSchema = new SimpleSchema({
 	createdAt: {
 		type: Date
@@ -57,13 +57,18 @@ ResourcesSchema = new SimpleSchema({
 		type: Number,
 		decimal: true,
 		optional:true,
+	},
+	thumbnail: {
+		type: String,
+		optional: true
 	}
-/*
 	,
 	tags: {
 		type: [TagsCountSchema],
 		optional: true
-	},
+	}
+	/*
+	,
 
 	labels: {
 		type: [String],
@@ -71,10 +76,7 @@ ResourcesSchema = new SimpleSchema({
 		max: 30,
 		optional: true
 	},
-	thumbnailURL: {
-		type: SimpleSchema.RegEx.Domain,
-		optional: true
-	},
+
 	socialMediaScores: {
 		type: ResourcesScoresSchema,
 		optional: true

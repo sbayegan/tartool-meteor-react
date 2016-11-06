@@ -169,7 +169,7 @@ export default class LoginRegisterModal extends Component {
 	}
 }
 
-export default createContainer(() => {
+let LoginRegisterModalContainer = createContainer(() => {
 	return {
 		currentUser: Meteor.user()
 	};
