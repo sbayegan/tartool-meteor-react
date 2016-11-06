@@ -5,7 +5,7 @@
 keyWordsData = [
 	{
 		label: "Entrepreneurship",
-		words: ["entrepreneur", "entrepreneurship"],
+		words: ["entrepreneur", "entrepreneurship","innovation"],
 		category: ["productivity"]
 	},
 	{
@@ -25,7 +25,7 @@ keyWordsData = [
 	},
 	{
 		label: "Database",
-		words: ["noSQL", "SQL", "relational", "database", "query"],
+		words: ["noSQL", "SQL", "relational database", "database", "query","dynamodb","DBMS"],
 		category: ["backend"]
 	},
 	{
@@ -45,12 +45,12 @@ keyWordsData = [
 	},
 	{
 		label: "Server",
-		words: ["server", "webserver", "web-server", "data center"],
+		words: ["server", "webserver", "web-server", "data center","platform"],
 		category: ["backend"]
 	},
 	{
 		label: "Network",
-		words: ["network", "computer network", "network traffic","packet","socket"],
+		words: ["network", "computer network", "network traffic","packet","socket","router","routing","proxy"],
 		category: ["backend"]
 	},
 	{
@@ -124,13 +124,13 @@ keyWordsData = [
 	,
 	{
 		label:"Distributed Systems",
-		words:["distributed system"],
+		words:["distributed system","distributed application","distributed database","distributed file system"],
 		category:["backend"]
 	}
 	,
 	{
 		label:"Could Architecture",
-		words:["cloud computing","cloud architecture","cloud ecosystem","cloud"],
+		words:["cloud computing","cloud architecture","cloud ecosystem","cloud","Amazon AWS", "Google Compute Engine", "Microsoft Azure","virtual machine"],
 		category:["backend"]
 	}
 	,
@@ -156,14 +156,14 @@ keyWordsData = [
 		label:"Artificial Intelligence",
 		words:[" AI ","artificial intelligence","neural network","forward chaining","backward chaining","backpropagation",
 			"data mining","deep learning","heuristics","inductive reasoning","machine learning","natural language processing","pruning",
-			"strong ai","weak ai","turing test"],
+			"strong ai","weak ai","turing test","bayesian"],
 		category:["theory"]
 
 	}
 	,
 	{
 		label:"Encryption",
-		words:["encryption","cryptography","cryptographic","cypher","cipher"],
+		words:["encryption","cryptography","cryptographic","cypher","cipher","cryptographically"],
 		category:["backend"]
 	}
 	,
@@ -218,13 +218,13 @@ keyWordsData = [
 	{
 		label:"Security",
 		words:["security","virus","macro virus","phishing","proxy server","spyware","worm","antivirus","DDOS","denial of service",
-			"distributed denial of service","bruteforce","brute-force","botnet","cookie poisening","malware"],
+			"distributed denial of service","bruteforce","brute-force","botnet","cookie poisening","malware","password"],
 		category:["backend"]
 	}
 	,
 	{
 		label:"Authentication",
-		words:["authentication","authorization","two factor authentication","two-factor authentication",""],
+		words:["authentication","authorization","two factor authentication","two-factor authentication"],
 		category:["backend"]
 	}
 	,
@@ -257,5 +257,113 @@ keyWordsData = [
 		words:["ssl","secure sockets layer"],
 		category:["backend"]
 	}
-]
-;
+	,
+	{
+		label:"Storage",
+		words:["SD card","hard drive"],
+		category:["backend","productivity"]
+	}
+	,
+	{
+		label:"Algorithm",
+		words:["algorithm"],
+		category:["backend","theory"]
+	}
+	,
+	{
+		label:"CPU",
+		words:["cpu"],
+		category:["backend"]
+	}
+	,
+	{
+		label:"Debugging",
+		words:["debug"],
+		category:["backend","frontend"]
+
+	}
+	,
+	{
+		label:"Ethernet",
+		words:["ethernet"],
+		category:["backend","productivity"]
+	}
+	,
+	{
+		label:"Fiber Optic",
+		words:["fiber optic"],
+		category:["backend","productivity"]
+	}
+	,
+	{
+		label:"FTP",
+		words:["ftp","file transfer protocol"],
+		category:["backend","productivity"]
+	}
+	,
+	{
+		label:"GUI",
+		words:["gui","graphical user interface","interface"],
+		category:["fronted","productivity"]
+	}
+	,
+	{
+		label:"Object Oriented",
+		words:["object-oriented","object oriented"],
+		category:["backend","theory","productivity"]
+	}
+	,
+	{
+		label:"Real Time",
+		words:["real time"],
+		category:["backend"]
+	}
+	,
+	{
+		label:"UNIX",
+		words:["unix"],
+		category:["backend","productivity"]
+	}
+	,
+	{
+		label:"Video",
+		words:["video","video encoding"],
+		category:["backend","productivity","VP9"]
+	}
+	,
+	{
+		label:"Conversion",
+		words:["convert","conversion"],
+		category:["backend","productivity"]
+	}
+	,
+	{
+		label:"Data Science",
+		words:["data science","data"],
+		category:["backend","theory","productivity"]
+	}
+	,
+	{
+		label:"Bitcoin",
+		words:["bitcoin","bit coin"],
+		category:["productivity"]
+	}
+	,
+	{
+		label:"SSH",
+		words:["SSH"],
+		category:["backend"]
+	}
+	,
+	{
+		label:"GIT",
+		words:["git"],
+		category:["productivity"]
+	}
+	,
+	{
+		label:"Consumers",
+		words:["consumer","customer"],
+		category:["productivity"]
+	}
+];

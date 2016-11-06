@@ -6,6 +6,10 @@ CandidateUrls = new Mongo.Collection('candidateUrls');
 CandidateUrlsSchema = new SimpleSchema({
 	url:{
 		type: String
+	},
+	previouslyOpened:{
+		type: Boolean,
+		optional:true
 	}
 });
 

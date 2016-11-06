@@ -4,7 +4,7 @@
 
 SnailMotherUrls = function() {
 	let motherUrls = MotherUrls.find({}).fetch();
-	_.each(motherUrls,function(motherUrl) {
-		Snail(motherUrl.url);
+	_.each(motherUrls, function(motherUrl) {
+		Snail(null, motherUrl.url);
 	});
 };

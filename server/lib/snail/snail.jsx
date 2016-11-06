@@ -14,181 +14,68 @@ import normalizeURL from 'normalize-url';
 import wordCount from 'wordcount';
 
 
-Snail = function(url) {
+Snail = function(id,inputUrl) {
 
-	let URLData = {
-		host: null,
-		url: null,
-		dom: null,
-		title: null,
-		links: [],
-		rawText: "",
-		rawWordCount: 0,
-		tags: [],
-		totalTagsCount: 0
-	};
+	let url;
 
-
-	let future = new Future();
-	let parsedURL = URL.parse(url);
-	// Hostname should be defined before we can proceed
-	let hostName = parsedURL.hostname;
-	if (!hostName) {
-		return URLData;
-	}
-	else {
-		URLData.host = hostName;
-		URLData.url = url;
+	if(inputUrl){
+		url = inputUrl;
+	}else{
+		let urlProfile = CandidateUrls.findOne({_id:id});
+		url = urlProfile.url;
 	}
 
-	/*
-	 ////////////////////////////////////////////////////////////////////////////////////////
-	 // TODO: Modularize
-	 // If there is a hostname, check if it is coming from youtube.
-	 let thisIsAYouTubeLink = (hostName == "www.youtube.com" || hostName == "youtube.com");
-	 // TODO: Modularize
-	 // If it is from youtube see if you can get the video id
-	 if(thisIsAYouTubeLink){
-	 // If the link is a valid youtube video link videoInformation will get filled
-	 let videoInformation = VideoURLParser.parse(url);
-	 if(videoInformation){
-	 URLData.video = videoInformation;
-	 }
-	 else{
-	 URLData.video = false;
-	 }
-	 }
-	 ///////////////////////////////////////////////////////////////////////////////////////
-	 */
+	let foundInRejected = RejectedUrls.findOne({url:url});
+	let foundInResources = Resources.findOne({url:url});
+	let alreadyOpened = CandidateUrls.findOne({url:url,previouslyOpened:true});
 
-
-	// Download the contents of the link
-	FetchUrl.fetchUrl(url, function(error, meta, body) {
-		// TODO: Meta could potentially have important information
-		// It could definitely be used to find the links with redirects begind them.
-
-
-		let rawHTML = body.toString();
-		let handler = new HTMLParser.DefaultHandler(function(error, dom) {
-			if (error)
-				console.log(error);
+	if(foundInRejected || foundInResources){
+		console.log("foundInRejected || foundInResources");
+		CandidateUrls.remove({url:url});
+	}
+	else if (alreadyOpened){
+		// TODO: remove from candidates
+		console.log("opened once");
+		CandidateUrls.remove({url:url});
+		RejectedUrls.upsert({url:url},{
+			$set:{
+				rejectedAt: new Date(),
+				tagsToRawWordCountRatio:0
+				}
 		});
-		let parser = new HTMLParser.Parser(handler);
-		parser.parseComplete(rawHTML);
-
-		URLData.dom = handler.dom;
-		// Check and see if there were any redirects when it tried to fetch the url
-		let finalUrl = meta.finalUrl;
-		if (finalUrl != URLData.url) {
-			let parseFinalUrl = URL.parse(finalUrl);
-			URLData.url = parseFinalUrl.url;
-			URLData.host = parseFinalUrl.host;
-		}
-
-		future.return();
-	});
-	future.wait();
-
-
-	let scanDomHelper = function(node) {
-		// Store the node type
-		let nodeType = node.type;
-
-		//
-		let nodeIsTag = (nodeType == "tag");
-		let tagIsTitle = (node.name == "title");
-		let tagIsLink = (node.name == "a");
-
-		let nodeIsScript = (nodeType == "script");
-		let tagIsScript = (node.name == "script");
-		let skipThisScript = (nodeIsScript && tagIsScript);
-
-		let nodeIsStyle = (nodeType == "style");
-		let tagIsStyle = (node.name == "style");
-		let skipThisStyle = (nodeIsStyle && tagIsStyle);
-
-		let nodeIsText = (nodeType == "text");
-
-		if (nodeType && nodeIsText) {
-			let rawText = node.data;
-			if (rawText) {
-				URLData.rawText = URLData.rawText.concat(" " + rawText);
-			}
-		}
-		if (nodeType && nodeIsTag && tagIsTitle) {
-			if (node) {
-				if (node.children) {
-					URLData.title = node.children[0].data;
-				}
-			}
-			return;
-		}
-		if (nodeType && nodeIsTag && tagIsLink) {
-			let link = node.attribs;
-			if (link) {
-				let href = link.href;
-				if (href) {
-					let thisIsAURL = IsURL(href);
-					if (thisIsAURL) {
-						let normalizedLink = normalizeURL(href);
-						let foundUrlInList = _.find(URLData.links, function(link) {
-							return (link == normalizedLink);
-						});
-						if (!foundUrlInList) {
-							URLData.links.push(normalizedLink);
-						}
-					}
-				}
-			}
-		}
-		if (skipThisScript || skipThisStyle) {
-			return
-		}
-		if (node.children) {
-			for (let i = 0; i < node.children.length; i++) {
-				scanDomHelper(node.children[i]);
-			}
-		}
 		return;
-	};
+	}else {
+		// Mark it as started
 
-	let scanDom = function(dom) {
-		for (let i = 0; i < dom.length; i++) {
-			scanDomHelper(dom[i]);
-		}
-	};
-
-	scanDom(URLData.dom);
-	// Clean the raw text.
-	URLData.rawText = URLData.rawText.replace(/\n/g, ' ');
-	URLData.rawText = URLData.rawText.replace(/\t/g, ' ');
-	URLData.rawText = URLData.rawText.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, ' ');
-	URLData.rawText = URLData.rawText.replace(/ +/g, ' ');
-	URLData.rawText = URLData.rawText.trim();
-	// TODO: remove parenthesis, dots and commas
-
-	URLData.rawWordCount = wordCount(URLData.rawText);
-
-	let totalTagsCount = 0;
-	_.each(keyWordsData, function(tags) {
-		let foundTags = 0;
-		_.each(tags.words, function(keyword) {
-			let regularExpression = new RegExp(keyword, "gi");
-			let count = (URLData.rawText.match(regularExpression) || []).length;
-			foundTags += count;
+		CandidateUrls.update({url:url},{
+			$set:{
+				previouslyOpened:true
+			}
 		});
-		if (foundTags) {
-			let TagCount = {};
-			TagCount.label = tags.label;
-			TagCount.count = foundTags;
-			URLData.tags.push(TagCount);
-			totalTagsCount += foundTags;
+
+
+		let domInfo = RetrieveDOM(url);
+		let documentIsPdf = false;
+		if (domInfo) {
+			documentIsPdf = (domInfo.meta.responseHeaders['content-type'] == "application/pdf");
 		}
-	});
+		if (!domInfo || documentIsPdf) {
+			console.log('badUrl:', url);
+			CandidateUrls.remove({url: url});
+			RejectedUrls.upsert({url: url}, {
+				$set: {
+					rejectedAt: new Date(),
+					tagsToRawWordCountRatio: 0
+				}
+			})
+		}
+		else {
+			let domContents = ScanDom(domInfo.host, domInfo.dom);
+			let cleanedText = CleanDOMRawText(domContents.rawText);
+			let tagGroups = ScanForTags(domContents.title, cleanedText);
+			FilterResources(id, domInfo, domContents, tagGroups);
+		}
 
-	URLData.totalTagsCount = totalTagsCount;
-	return URLData;
-
-	// Keywords shared by urls on with the same host may be removed.
-
+		return;
+	}
 };

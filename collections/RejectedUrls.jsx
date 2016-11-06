@@ -10,6 +10,9 @@ RejectedUrlsSchema = new SimpleSchema({
 	tagsToRawWordCountRatio:{
 		type: Number,
 		decimal: true
+	},
+	rejectedAt:{
+		type: Date()
 	}
 });
 

@@ -14,7 +14,9 @@ import wordCount from 'wordcount';
 
 Meteor.methods({
 	"parseURL":function(url) {
-		return Snail(url);
+		let domInfo = RetrieveDOM(url);
+		let domContents = ScanDom(domInfo.host,domInfo.dom);
+		return domContents;
 	}
 
 });

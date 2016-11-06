@@ -1,86 +1,85 @@
 Resources = new Mongo.Collection('resouces');
 
+/*
 ResourcesScoresSchema = new SimpleSchema({
-	likes:{
+	likes: {
 		type: Number
 	},
-	sharesOnFacebook:{
+	sharesOnFacebook: {
 		type: Number,
 		optional: true
 	},
-	sharesOnTwitter:{
+	sharesOnTwitter: {
 		type: Number,
 		optional: true
 	}
 	,
-	sharesOnLinkedIn:{
+	sharesOnLinkedIn: {
 		type: Number,
 		optional: true
 	}
 });
 
 TagsCountSchema = new SimpleSchema({
-	label:{
-		type:String
+	label: {
+		type: String
 	},
-	count:{
+	count: {
 		type: Number
 	}
 });
-
+*/
 ResourcesSchema = new SimpleSchema({
-	active:{
+	createdAt: {
+		type: Date
+	},
+	active: {
 		type: Boolean,
-		defaultValue: false,
-		autoform: {
-          type: 'hidden'
-        }
+		defaultValue: false
 	},
-	labels:{
-		type: [String],
-		min: 1,
-		max: 30
-	},
-	host:{
+	host: {
 		type: String
 	},
-	url:{
-		type: SimpleSchema.RegEx.Domain
+	url: {
+		type: String
 	},
-	title:{
+	title: {
 		type: String,
 		max: 200
 	},
-	rawWordCount:{
+	rawWordCount: {
 		type: Number
 	},
-	totalTagsCount:{
+	totalTagsCount: {
 		type: Number
 	},
-	tags:{
-		type:[TagsCountSchema]
+	tagsToRawWordCountRatio: {
+		type: Number,
+		decimal: true,
+		optional:true,
 	}
+/*
 	,
-	tagsToRawWordCountRatio:{
-		type:Number,
-		decimal:true
-	}
-	,
-	thumbnailURL:{
-		type: SimpleSchema.RegEx.Domain
+	tags: {
+		type: [TagsCountSchema],
+		optional: true
 	},
-	socialMediaScores:{
+
+	labels: {
+		type: [String],
+		min: 1,
+		max: 30,
+		optional: true
+	},
+	thumbnailURL: {
+		type: SimpleSchema.RegEx.Domain,
+		optional: true
+	},
+	socialMediaScores: {
 		type: ResourcesScoresSchema,
-		autoform: {
-          type: 'hidden'
-        }
-	},
-	createdAt:{
-		type: Date,
-		autoform: {
-          type: 'hidden'
-        }
+		optional: true
 	}
+	*/
 });
 
 Resources.attachSchema(ResourcesSchema);
