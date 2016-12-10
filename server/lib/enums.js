@@ -3,4 +3,4 @@
  */
 TitleKeywordCount = 10;
 
-StandardRatio = 6/100;
+StandardRatio = 10/100;

@@ -5,8 +5,22 @@ export default class Resource extends Component {
 	render() {
 		return (
 			<div className="resource-circle">
-				{this.props.resource.title}
-				<hr/>
+				<a href={this.props.resource.url} target="_blank">
+					<div className="resource-title">
+						{this.props.resource.title}
+					</div>
+				</a>
+				<hr className="resource-horizontal-line-below-title"/>
+				<div className="resource-tags-box">
+					{
+						this.props.resource.tags.map(function(tag) {
+							return <span className="badge">{tag.label}      </span>
+						})
+					}
+				</div>
+				<div className="resource-save">
+					Save
+				</div>
 			</div>
 		);
 	}

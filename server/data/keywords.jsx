@@ -81,7 +81,7 @@ keyWordsData = [
 	}
 	,
 	{
-		label: "JS",
+		label: "JavaScript",
 		words: ["javascript", "js"],
 		category: ["backend"]
 	}
