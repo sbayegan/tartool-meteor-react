@@ -24,10 +24,12 @@ import wordCount from 'wordcount';
 Snail = function(id, inputUrl) {
 
 	let url;
+	let isThisAMotherUrl = false;
 
 	// Set the url based on the id
 	if (inputUrl) {
 		url = inputUrl;
+		isThisAMotherUrl = true;
 	} else {
 		let urlProfile = CandidateUrls.findOne({_id: id});
 		url = urlProfile.url;
@@ -82,7 +84,7 @@ Snail = function(id, inputUrl) {
 			let domContents = ScanDom(domInfo.host, domInfo.dom);
 			let cleanedText = CleanDOMRawText(domContents.rawText);
 			let tagGroups = ScanForTags(domContents.title, cleanedText);
-			FilterResources(id, domInfo, domContents, tagGroups);
+			FilterResources(id, domInfo, domContents, tagGroups, isThisAMotherUrl);
 		}
 
 		return;

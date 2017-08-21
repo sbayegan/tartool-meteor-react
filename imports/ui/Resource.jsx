@@ -13,8 +13,8 @@ export default class Resource extends Component {
 				<hr className="resource-horizontal-line-below-title"/>
 				<div className="resource-tags-box">
 					{
-						this.props.resource.tags.map(function(tag) {
-							return <span className="badge">{tag.label}      </span>
+						this.props.resource.tags.map(function(tag,index) {
+							return <span key={index} className="badge">{tag.label}      </span>
 						})
 					}
 				</div>
